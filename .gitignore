@@ -1,2 +1,8 @@
-.sass-cache/
-*.css.map
+.DS_store
+.sass-cache
+npm-debug.log
+node_modules
+docs
+atomic-db
+assets/css
+sassdoc
