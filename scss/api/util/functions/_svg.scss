@@ -1,0 +1,22 @@
+// sass-lint:disable quotes
+
+////
+/// Svg Helpers
+/// @group svg-helpers
+////
+
+/// @name Encode svg
+/// Encodes a svg in a string
+/// @param {string} $string - A svg within a string
+/// @return {string} An encoded SVG
+
+@function svg-inline($string) {
+  $result: find-replace($string, "<svg", "<svg xmlns='http://www.w3.org/2000/svg'");
+  $result: find-replace($result, '%', '%25');
+  $result: find-replace($result, '"', '%22');
+  $result: find-replace($result, "'", '%27');
+  $result: find-replace($result, ' ', '%20');
+  $result: find-replace($result, '<', '%3C');
+  $result: find-replace($result, '>', '%3E');
+  @return "data:image/svg+xml;utf8," + $result;
+}

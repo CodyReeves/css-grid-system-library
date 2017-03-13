@@ -1,0 +1,405 @@
+////
+/// Grids
+/// @group tools
+////
+
+//  Masonry Grid Mixins
+// ==========================================================================
+
+/// @name Column Gap Prefix
+/// Prefixs column gap
+/// @param {property} $args - A string of properties
+/// @outputs column gap properties
+
+@mixin column-gap($args...) {
+  -moz-column-gap: $args;
+  -webkit-column-gap: $args;
+  column-gap: $args;
+}
+
+/// @name Page Break Inside Prefix
+/// Prefixs page-break
+/// @param {property} $args - A string of properties
+/// @outputs page-break properties
+
+@mixin page-break-inside($arg) {
+  -webkit-column-break-inside: $arg;
+  page-break-inside: $arg;
+  break-inside: $arg;
+}
+
+/// @name Masonry Item Creator
+/// Sets width and display if columns are not supported
+/// @param {property} $args - A string of properties
+/// @outputs item styles for masnry grid
+
+@mixin mas-item-width($arg) {
+  .item {
+    @supports not ((column-count: 2) or (page-break-inside: avoid)) {
+      display: inline-block;
+      width: 100% / $arg;
+    }
+  }
+}
+
+//  Flexbox Grid
+// ==========================================================================
+
+/// @name Breakpoint Col Str
+/// Creates a string of classes of all the columns
+/// @param {property} $col-size - xs, sm, lg, xl
+/// @param {intiger} $$col-count - how many columns
+/// @returns {string} string of column classes
+
+@function breakpoint-col-str($col-size, $col-count) {
+  $return-value: ();
+  $count: 1;
+
+  @while $count <= $col-count {
+    $str: '.col-' + $col-size + '-' + $count + ', ';
+    $return-value: append($return-value, $str);
+    $count: $count + 1;
+  }
+  @return $return-value;
+}
+
+/// @name Container Mixin
+/// 2 types of containers can be called fluid and contain
+/// @param {property} $type - fluid or conatin
+/// @outputs container properties
+
+@mixin container($type) {
+  @if $type == fluid {
+    height: auto;
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: 15px;
+    padding-left: 15px;
+  } @else if $type == contain {
+    height: auto;
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: 15px;
+    padding-left: 15px;
+
+    @include breakpoint(sm) {
+      width: 750px;
+    }
+    @include breakpoint(md) {
+      width: 970px;
+    }
+    @include breakpoint(lg) {
+      width: 1170px;
+    }
+  }
+}
+
+/// @name Flex Display Prefix
+/// Exports display flex properties
+/// @outputs display flex properties
+
+@mixin flex-display {
+  // sass-lint:disable-block no-duplicate-properties
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -webkit-box;
+  display: flex;
+}
+
+/// @name Flex Prefix
+/// Exports flex properties
+/// @param {value | string} $args - A string of properties
+/// @outputs flex properties
+
+@mixin flex($args) {
+  flex: $args;
+  -webkit-flex: $args;
+  -ms-flex: $args;
+  -webkit-box-flex: 0;
+}
+
+/// @name Box Orient Prefix
+/// @param {value | string} $args - A string of properties
+/// @outputs box-orient properties
+
+@mixin box-orient($args) {
+  @include prefix(box-orient, $args);
+}
+
+/// @name Box Direction Prefix
+/// @param {value | string} $args - A string of properties
+/// @outputs box-direction properties
+
+@mixin box-direction($args) {
+  @include prefix(box-direction, $args);
+}
+
+/// @name Flex Direction Prefix
+/// @param {value | string} $args - A string of properties
+/// @outputs flex-direction properties
+
+@mixin flex-direction($args) {
+  @include prefix(flex-direction, $args);
+}
+
+/// @name Order Prefix
+/// @param {value | string} $args - A string of properties
+/// @outputs flex properties
+
+@mixin order($args) {
+  -ms-flex-order: $args;
+  -webkit-order: $args;
+  order: $args;
+}
+
+/// @name Flex Grow Prefix
+/// @param {value | string} $args - A string of properties
+/// @outputs flex-grow properties
+
+@mixin flex-grow ($args) {
+  -webkit-flex-grow: $args;
+  -ms-flex-positive: $args;
+  -webkit-box-flex: $args;
+  flex-grow: $args;
+}
+
+/// @name Flex Prefix
+/// Exports disply flex properties
+/// @param {value | string} $args - A string of properties
+/// @outputs flex properties
+
+@mixin flex-basis($args) {
+  -webkit-flex-basis: $args;
+  -ms-flex-preferred-size: $args;
+  flex-basis: $args;
+}
+
+/// @name Flex Wrap Prefix
+/// @param {value | string} $args - A string of properties
+/// @outputs flex-wrap properties
+
+@mixin flex-wrap($args) {
+  -webkit-flex-wrap: $args;
+  -moz-flex-wrap: $args;
+  flex-wrap: $args;
+  @if $args == nowrap {
+    -ms-flex-wrap: none;
+  } @else {
+    -ms-flex-wrap: $args;
+  }
+}
+
+/// @name Horizontal Alignment
+/// @param {value | string} $args - A string of properties -> center, bottom, top
+/// @outputs Horizontal alignment properties
+
+@mixin horiz-alignment($args) {
+  -ms-flex-align: $args;
+  -webkit-box-align: $args;
+  @if $args == center {
+    -webkit-align-items: $args;
+    align-items: $args;
+  } @else {
+    -webkit-align-items: flex- + $args;
+    align-items: flex- + $args;
+  }
+}
+
+/// @name Grid Direction
+/// Sets up direction for flexbox
+/// @param {key} $direction - row, row-reverse, column, column-reverse, inherit
+/// @outputs direction properties
+
+@mixin direction($direction) {
+  @if $direction == row {
+    @include box-orient(horizontal);
+    @include flex-direction(row);
+  } @else if $direction == row-reverse {
+    @include box-orient(horizontal);
+    @include box-direction(reverse);
+    @include flex-direction(row-reverse);
+  } @else if $direction == column {
+    @include box-orient(vertical);
+    @include flex-direction(column);
+  } @else if $direction == column-reverse {
+    @include box-orient(vertical);
+    @include box-direction(reverse);
+    @include flex-direction(column-reverse);
+  } @else if $direction == inherit {
+    @include box-orient(inherit);
+    @include flex-direction(inherit);
+  }
+}
+
+/// @name Flex Width Prefix
+/// Create a width for columns
+/// @param {value | string} $args - A string of properties
+/// @outputs flex width properties
+
+@mixin flex-width($args) {
+  -webkit-flex-basis: percentage($args);
+  -ms-flex-preferred-size: percentage($args);
+  flex-basis: percentage($args);
+  width: 100%;
+  max-width: percentage($args);
+}
+
+/// @name Horizontal Grid Alignment
+/// Sets horizontal aligments for columns and rows
+/// @param {key} $position - top, middle, bottom
+/// @outputs Grid alignment properties
+
+@mixin grid-horiz-align($position) {
+  @if $position == top {
+    @include horiz-alignment(start);
+  } @else if $position == middle {
+    @include horiz-alignment(center);
+  } @else if $position == bottom {
+    @include horiz-alignment(end);
+  }
+}
+
+/// @name Vertical grid alignment
+/// Sets vertical aligments for columns and rows
+/// @param {string} $args - A string of properties
+/// @outputs flex properties
+
+@mixin grid-vert-align($args) {
+  text-align: $args;
+  -ms-flex-pack: $args;
+  -webkit-box-pack: $args;
+  justify-content: flex- + $args;
+  @if $args == center {
+    -webkit-justify-content: $args;
+    justify-content: $args;
+  } @else {
+    -webkit-justify-content: flex- + $args;
+    justify-content: flex- + $args;
+  }
+}
+
+/// @name Grid Distribution
+/// Sets up grid distribution
+/// @param {key} $distribution - around, between
+/// @outputs Grid distribution properties
+
+@mixin grid-distribute($distribution) {
+  @if $distribution == around {
+    -ms-flex-pack: distribute;
+    -webkit-justify-content: space-around;
+    justify-content: space-around;
+  } @else if $distribution == between {
+    -ms-flex-pack: justify;
+    -webkit-justify-content: space-between;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+  }
+}
+
+/// @name Grid Reorder
+/// @param {value} $order
+/// @outputs Grid order properties
+
+@mixin grid-reorder($order) {
+  @if $order == first {
+    @include order(-1);
+    -webkit-box-ordinal-group: 0;
+  } @else if $order == last {
+    @include order(1);
+    -webkit-box-ordinal-group: 2;
+  }
+}
+
+//  Grid Structure
+// =======================================
+
+/// @name Grid Row Creator
+/// Creats styles for the row class within the grid
+/// @outputs row properties
+
+@mixin grid-row() {
+  box-sizing: border-box;
+  margin-right: -15px;
+  margin-left: -15px;
+
+  -webkit-box-flex: 0;
+  -webkit-box-direction: normal;
+  @include flex-display();
+  @include flex(0 1 auto);
+  @include flex-direction(row);
+  @include box-orient(horizontal);
+  @include flex-wrap(wrap);
+}
+
+/// @name Base Column
+/// Base Styles for columns ** This is important to have on every column **
+/// @outputs column base properties
+
+@mixin column-base () {
+  flex: 0 0 auto;
+  box-sizing: border-box;
+  padding-right: 15px;
+  padding-left: 15px;
+
+  -webkit-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  -webkit-box-flex: 0;
+}
+
+/// @name Column Creator
+/// @param {value} $breakpoint
+/// @param {list} $col-size
+/// @outputs exports correct width with or without breakpoint
+
+@mixin grid-column ($breakpoint, $col-size) {
+  $column-width: $col-size / 12;
+  @if $breakpoint == xs {
+    @include flex-width($column-width);
+  } @else {
+    @include breakpoint($breakpoint) {
+      @include flex-width($column-width);
+    }
+  }
+}
+
+/// @name Flex Column
+/// @param {key} $breakpoint
+/// @outputs Base column properties within breakpoint
+
+@mixin flex-column($breakpoint) {
+  @include breakpoint($breakpoint) {
+    -webkit-flex-basis: 0;
+    -ms-flex-preferred-size: 0;
+    flex-basis: 0;
+    max-width: 100%;
+    -webkit-flex-grow: 1;
+    -ms-flex-positive: 1;
+    -webkit-box-flex: 1;
+    flex-grow: 1;
+  }
+}
+
+
+//  IE Fallback Grid Mixins
+// ==========================================================================
+
+/// @name Fallback Column Base
+/// Basic fallback for ie
+/// @outputs base column properties for fallback
+
+@mixin fallback-column-base() {
+  position: relative\9;
+  float: left\9;
+  min-height: 1px\9;
+  padding-right: 15px\9;
+  padding-left: 15px\9;
+}
+
+/// @name Fallback Col
+/// @outputs fallback col properties
+
+@mixin fallback-col() {
+  display: inline-block\9;
+  width: auto\9;
+  max-width: 100%\9;
+}

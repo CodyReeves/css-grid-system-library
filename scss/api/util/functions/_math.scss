@@ -1,0 +1,36 @@
+////
+/// Math Helpers
+/// @group map-helpers
+////
+
+/// @name Exponent Power
+/// Returns base to the exponent power.
+/// @param {integer} $base - The base number
+/// @param {integer} $exp - The exponent to which to raise base
+/// @return {value} The powered number
+/// @example
+///     pow(4, 2)   // 16
+///     pow(4, -2)  // 0.0625
+///     pow(4, 0.2) // 1.31951
+
+@function pow($base, $exp) {
+  @if $exp == floor($exp) {
+    $r: 1;
+    $s: 0;
+    @if $exp < 0 {
+      $exp: $exp * -1;
+      $s: 1;
+    }
+    @while $exp > 0 {
+      @if $exp % 2 == 1 {
+        $r: $r * $base;
+      }
+      $exp: floor($exp * 0.5);
+      $base: $base * $base;
+    }
+    @return if($s != 0, 1 / $r, $r);
+  } @else {
+    @return null;
+    @warn 'You must use a whole number';
+  }
+}

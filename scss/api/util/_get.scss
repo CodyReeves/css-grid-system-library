@@ -1,0 +1,175 @@
+
+////
+/// Setting Api
+/// @group setting-api
+////
+
+$settings: () !default;
+$debug: false !default;
+
+/// @name Find and Replace
+/// Find and replace for strings
+/// @param {string} $string - String you want to search
+/// @param {string} $search - String you are searching for
+/// @param {string | value} $replace - What to replace with
+/// @return {string} string with replaced text/values
+@function find-replace($string, $search, $replace: '') {
+  $index: str-index($string, $search);
+  @if $index {
+    @return str-slice($string, 1, $index - 1) + $replace + find-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+  }
+
+  @return $string;
+}
+
+// Lazy API
+// ==========================================================================
+
+/// Serializes function metadata so that it can be evaluated by get()
+/// @param $func {String} - the name of the function to call
+/// @param $$args {Map} - a map of named arguments to pass to $func
+/// @return {Map}
+
+@function lazy($func, $args:()) {
+  @return (
+        '_type': 'function',
+        '_func': $func,
+        '_args': $args,
+    );
+}
+
+/// Is $map a serialized lazy?
+/// @param $map {Map} - $map
+/// @return {Bool}
+@function is-lazy($map) {
+  @return type-of($map) == map and map-has-key($map, '_type') and map-get($map, '_type') == 'function';
+}
+
+/// Execute a lazy function after resolving any aliases in it's arguments
+/// @param $map {Map} - $map
+/// @return {Literal}
+
+@function exec-lazy($map) {
+  @if is-lazy($map) == false {
+    @return $map;
+  }
+  $name: map-get($map, '_func');
+  $args: resolve-aliases(map-get($map, '_args'), $settings);
+  // allow lazy's as parameters to lazy's
+    @each $k, $v in $args {
+    @if is-lazy($v) {
+      $v: exec-lazy($v);
+    }
+  }
+  $args: map-merge($args, ($k: $v));
+  @return call($name, $args...);
+}
+
+// List functions
+// ==========================================================================
+
+
+/// @name Guessing here! If it looks like an alias its most likly one ;)
+/// @param $name {List|String} - $name
+/// @return {Bool}
+@function looks-like-an-alias($name) {
+  @return type-of($name) == string and (str-index($name, ',') or 0) > 1;
+}
+
+/// @name Takes $name and resolves it's alias against $settings.
+/// If name is a list each item is resolved individually.
+/// Returns either the resolved values or $name
+// @param $name {List | String} - $name
+// @return {Literal}
+@function resolve-alias($name) {
+  $value: $name;
+  $break: false;
+  @if type-of($name) == list {
+    $ret: ();
+
+    @each $item in $name {
+      $ret: append($ret, resolve-alias($item), list-separator($name));
+    }
+
+    @return $ret;
+  }
+
+  @while looks-like-an-alias($value) and $break == false {
+    $key: $value;
+    $_root: $settings;
+
+    @while (str-index($key, ',') or 0) > 0 {
+      $child-key: str-slice($key, 1, str-index($key, ',') - 1);
+      $key: str-slice($key, str-index($key, ',') + 1);
+      $_root: map-get($_root, $child-key) or ();
+    }
+
+    @if length($_root) > 0 {
+      $value: map-get($_root, $key);
+    } @else {
+      $break: true;
+    }
+  }
+
+  @return if(is-lazy($value), exec-lazy($value), $value);
+}
+
+/// @name Takes $map and returns a new map with aliases resolved
+/// @param $map {Map} - map
+/// @param $extras {Map} - an external map to resolve aliases against
+/// @return {Map}
+@function resolve-aliases($map, $extras: ()) {
+  $ret: ();
+  @each $name, $value in $map {
+    // Looks like an alias, try to resolve it, default to $value
+    @if type-of($value) == string {
+      $value: lookup($ret, $value, lookup($extras, $value, $value));
+      $ret: map-merge($ret, ($name: $value));
+    } @else
+    // Recursion yo!
+    if type-of($value) == map {
+      $value: resolve-aliases($value, $extras);
+      $ret: map-merge($ret, ($name: $value));
+    } @else {
+      $ret: map-merge($ret, ($name: $value));
+    }
+  }
+
+  @return $ret;
+}
+
+/// @name Takes a one level $map and returns a new map with aliases resolved
+/// @param $map {Map} - map
+/// @param $key {String} - key to lookup in map
+/// @param $default {Value} - the default value to return if key is not found
+/// @return {Value}
+
+@function lookup($map, $key, $default: null) {
+  @if type-of($map) != map {
+    @return $default;
+  }
+
+  $ret: get($key, $map);
+  @if $ret {
+    @return $ret;
+  }
+
+  @return $default;
+}
+
+/// @name Joins all elements of single dimensional $list with $glue
+/// @param $list {List} - list
+/// @param $glue {String} - value to use as a join string
+/// @return {String}
+@function implode($list, $glue: ',') {
+  @if length($list) == 1 {
+    @return $list;
+  }
+
+  $ret: unquote('');
+  @for $i from 1 through length($list) {
+    $ret: if($ret == '', $ret, $ret + $glue) + nth($list, $i);
+  }
+
+  @return $ret;
+}

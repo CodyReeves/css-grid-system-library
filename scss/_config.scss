@@ -1,0 +1,15 @@
+$settings: (
+  grid: (
+    setup: (
+      breakpoints-list: (xs, sm, md, xl, xxl),
+      breakpoints: (
+        xs: 768px,
+        sm: 768px,
+        md: 992px,
+        lg: 1280px,
+        xl: 1600px,
+        xxl: 1900px  
+      ),
+    ),
+  )
+) !global;
