@@ -11,12 +11,7 @@ var gulp = require('gulp'),
   plumberNotifier = require('gulp-plumber-notifier'),
   stripCssComments = require('gulp-strip-css-comments'),
   cleanCSS = require('gulp-clean-css'),
-  uncss = require('gulp-uncss'),
-  runSequence = require('run-sequence'),
-  copy = require('copy'),
   uglify = require('gulp-uglify'),
-  svgmin = require('gulp-svgmin'),
-  inquirer = require('inquirer'),
   image = require('gulp-image');
 
 /*---------------------------------------------------------
@@ -35,14 +30,14 @@ var paths = {
     file: 'style.css',
   },
   js: {
-    src: '',
-    dest: '',
+    src: './assets/js/src/*.js',
+    dest: './assets/js/',
     file: 'compiled.js',
   },
   img: {
-    src: ['', '', '', ''],
-    svg: '',
-    dest: '',
+    src: ['./assets/img/src/*.jpg', './assets/img/src/*.gif', './assets/img/src/*.png', './assets/img/src/*.jpeg'],
+    svg: '/assets/img/src/*.svg',
+    dest: './assets/img/',
   }
 };
 
@@ -81,7 +76,6 @@ gulp.task('clean', function () {
     .pipe(stripCssComments({ preserve: /(^#|^!)/ }))
     .pipe(gulp.dest(paths.css.dest));
 });
-
 
 /*---------------------------------------------------------
  JS Tasks
