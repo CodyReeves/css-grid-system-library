@@ -81,9 +81,7 @@ gulp.task('sass', function () {
 gulp.task('clean', function () {
   return gulp.src(paths.css.src)
     .pipe(stripCssComments({ preserve: /(^#|^!)/ }))
-    .pipe(uglifycss({
-      "maxLineLen": 100,
-    }))
+    .pipe(uglifycss())
     .pipe(gulp.dest(paths.css.dest));
 });
 
