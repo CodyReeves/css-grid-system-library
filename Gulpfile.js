@@ -12,7 +12,6 @@ var gulp = require('gulp'),
   stripCssComments = require('gulp-strip-css-comments'),
   cleanCSS = require('gulp-clean-css'),
   uglifycss = require('gulp-uglifycss'),
-  image = require('gulp-image'),
   rename = require('gulp-rename');
 
 /*---------------------------------------------------------
@@ -100,22 +99,3 @@ gulp.task('js-compile', function () {
 /*---------------------------------------------------------
 Image Tasks
 --------------------------------------------------------*/
-
-/* Minify PNG, JPEG, GIF and SVG images
-----------------------------------*/
-
-gulp.task('image', function () {
-  return gulp.src(paths.img.src)
-      .pipe(image({
-        pngquant: true,
-        optipng: true,
-        zopflipng: false,
-        jpegRecompress: true,
-        jpegoptim: true,
-        mozjpeg: true,
-        gifsicle: true,
-        svgo: true,
-        concurrent: 10,
-      }))
-      .pipe(gulp.dest(paths.img.dest));
-});
