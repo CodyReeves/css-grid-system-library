@@ -1,5 +1,6 @@
 $settings: (
   grid: (
+    grid-columns: 12,
     setup: (
       breakpoints-list: (xs, sm, md, xl, xxl),
       breakpoints: (
@@ -11,5 +12,9 @@ $settings: (
         xxl: 1900px  
       ),
     ),
+    create-masonry: true,
+    flexbox-columns-active: true,
+    mas-item-padding: 15px,
+    mas-column-gap: 15px
   )
 ) !global;
