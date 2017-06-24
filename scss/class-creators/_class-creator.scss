@@ -1,8 +1,19 @@
 @import 'grid';
 @import 'flexbox';
+@import 'masonry-flexbox';
+
+$col-size: map-keys(get('grid, setup, breakpoints')) !default;
+$grid-columns: get('grid, grid-columns');
+$flexbox-columns-active: get('grid, flexbox-columns-active');
+$create-masonry: get('grid, create-masonry');
+$create-css-grid: get('grid, create-css-grid');
 
 @include flexbox-grid($col-size, $grid-columns, $flexbox-columns-active);
 
 @if $create-masonry != false {
-  @include masonry-grid($breakpoints) 
+  @include masonry-grid(get('grid, setup, breakpoints'));
+}
+
+@if $create-css-grid != false {
+  @include css-grid($col-size, get('grid, css-grid-gutter'));
 }

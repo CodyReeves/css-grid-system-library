@@ -2,3 +2,25 @@
 @import 'get';
 @import 'grid';
 @import 'breakpoints';
+
+/// @name Prefix Utility
+/// @param $property - CSS property
+/// @param $experssion - The expressions for the CSS property
+/// @param $usage - Defines where the perfix will be placed - More cases can be created if required
+/// @param $prefix - Defines the prefix map that generates the proper prefixs
+/// @outputs required prefixed styles
+
+@mixin prefix($property, $expression, $usage: property, $prefix: get('prefix')) {
+  @if $usage == property {
+    @each $key, $browser-prefix in $prefix {
+      #{$browser-prefix}#{$property}: unquote(#{$expression});
+    }
+  } @else if $usage == expression {
+    @each $key, $browser-prefix in $prefix {
+      #{$property}: $browser-prefix + unquote(#{$expression});
+    }
+  } @else {
+    @error '`#{$usage}` is not a proper placement for the prefix';
+  }
+  #{$property}: unquote(#{$expression});
+}

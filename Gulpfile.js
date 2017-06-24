@@ -12,7 +12,8 @@ var gulp = require('gulp'),
   stripCssComments = require('gulp-strip-css-comments'),
   cleanCSS = require('gulp-clean-css'),
   uglify = require('gulp-uglify'),
-  image = require('gulp-image');
+  image = require('gulp-image'),
+  rename = require('gulp-rename');
 
 /*---------------------------------------------------------
  Required paths for Gulp
@@ -21,13 +22,19 @@ var gulp = require('gulp'),
 var paths = {
   scss: {
     src: './scss/**/**/**/**/*.scss',
-    dest: './assets/css/',
+    dest: './css/',
     file: './scss/main.scss',
   },
   css: {
-    src: './assets/css/*.css',
-    dest: './assets/css/',
+    src: './css/*.css',
+    dest: './css/',
     file: 'style.css',
+  },
+  cssMin: {
+    src: './css/*.css',
+    dest: './css/',
+    fileOg: '/css/style.css',
+    fileMin: 'min.style.css'
   },
   js: {
     src: './assets/js/src/*.js',

@@ -173,3 +173,35 @@ $debug: false !default;
 
   @return $ret;
 }
+
+// Settings API
+// ==========================================================================
+
+/// @name Gets $keys value from the $settings map
+/// @param $key {String} - flattened key to lookup
+/// @param $_root {Map} - for internal use only
+/// @return {Value} value called
+
+@function get($key, $_root: null) {
+
+  @if $_root == null {
+    $_root: $settings;
+  }
+  $search: ' ';
+  @while (str-index($key, ',') or 0) > 0 {
+    $child-key: str-slice($key, 1, str-index($key, ',') - 1);
+    $child-key: find-replace($child-key, $search);
+    $key: str-slice($key, str-index($key, ',') + 1);
+    $key: find-replace($key, $search);
+    $_root: map-get($_root, $child-key) or ();
+  }
+
+  $value: map-get($_root, $key);
+  @if is-lazy($value) {
+    @return exec-lazy($value);
+  } @else if type-of($value) == map {
+    @return resolve-aliases($value, $settings);
+  } @else {
+    @return resolve-alias($value);
+  }
+}

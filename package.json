@@ -29,6 +29,7 @@
     "gulp": "^3.9.1",
     "gulp-clean-css": "^2.0.8",
     "gulp-concat": "^2.6.0",
+    "gulp-image": "^2.7.2",
     "gulp-minify": "0.0.11",
     "gulp-plumber": "^1.1.0",
     "gulp-plumber-notifier": "0.0.3",
@@ -36,11 +37,13 @@
     "gulp-sourcemaps": "^1.6.0",
     "gulp-strip-css-comments": "^1.2.0",
     "gulp-svgmin": "^1.2.2",
-    "gulp-uglify": "^2.0.0",
-    "gulp-image": "^2.7.2"
+    "gulp-uglify": "^2.0.0"
   },
   "bugs": {
     "url": ""
   },
-  "homepage": ""
+  "homepage": "",
+  "dependencies": {
+    "gulp-rename": "^1.2.2"
+  }
 }
