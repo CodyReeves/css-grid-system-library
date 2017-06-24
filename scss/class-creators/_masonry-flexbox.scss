@@ -1,0 +1,34 @@
+/// @name Masonry Grid
+/// Creates a masonry grid
+/// @param {key} - Breakpoint size
+/// @outputs grid classes within breakpoint
+
+@mixin masonry-grid($breakpoints) {
+  // Masonry grid base styles
+  .masonry-row {
+    padding: 0;
+
+    @include column-gap(get('grid, mas-column-gap'));
+    @include box-direction(row);
+
+    .item {
+      box-sizing: border-box;
+      width: 100%;
+      padding: get('grid, mas-item-padding');
+
+      @include page-break-inside(avoid);
+    }
+  }
+
+  // Masonry grid size generator
+  @for $i from 1 through get('grid, grid-columns') {
+    @each $key, $size in $breakpoints {
+      .mas-col-#{$key}-#{$i} {
+        @include breakpoint($key) {
+          column-count: $i;
+          @include mas-item-width($i);
+        }
+      }
+    }
+  }
+}
