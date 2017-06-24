@@ -12,9 +12,11 @@ $settings: (
         xxl: 1900px  
       ),
     ),
-    create-masonry: true,
     flexbox-columns-active: true,
+    create-masonry: true,
     mas-item-padding: 15px,
-    mas-column-gap: 15px
+    mas-column-gap: 15px,
+    create-css-grid: true,
+    css-grid-gutter: 15px
   )
 ) !global;

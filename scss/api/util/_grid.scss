@@ -310,6 +310,20 @@
   }
 }
 
+/// @name Row column stretch
+/// @param {string} $col-size
+/// @outputs properties for each item in the columns are equal vertical space
+
+@mixin grid-stretch($col-size) {
+  @include flex-display();
+  @include direction(column);
+
+  [class^='col-#{$col-size}'],
+  [class*=' col-#{$col-size}'] {
+    @include flex(1 0 auto);
+  }
+}
+
 //  Grid Structure
 // =======================================
 

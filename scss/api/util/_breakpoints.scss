@@ -17,7 +17,7 @@ $queries: (
 /// @name Breakpoints
 /// @access private
 /// @type map
-$breakpoints: get('grid, setup, breakpoints-list');
+$breakpoints: get('grid, setup, breakpoints');
 
 /// @name Breakpoint Mixen
 /// @param {keys} $queries - min-width max-width height min-height max-height key value
@@ -200,7 +200,7 @@ $breakpoints: get('grid, setup, breakpoints-list');
 
 @function validate($query, $breakpoints) {
   $return-value: null;
-
+  
   @if map-has-key($breakpoints, $query) {
     $return-value: map-get($breakpoints, $query);
   } @else if type-of($query) == number {

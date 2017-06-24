@@ -16,7 +16,7 @@
   }
   @if $flexbox-columns-active != false {
     .row {
-      @include grid-row(flexbox);
+      @include grid-row();
     }
   }
 
@@ -123,7 +123,7 @@
           @include grid-stretch($col-size);
         }
       }
-      @if $flexbox-grid != false {
+      @if $flexbox-columns-active != false {
       //Creates basic grid system
         @for $i from 1 through $grid-columns {
           $column-full: $i / ($grid-columns);
