@@ -1,0 +1,8 @@
+@import 'grid';
+@import 'flexbox';
+
+@include flexbox-grid($col-size, $grid-columns, $flexbox-columns-active);
+
+@if $create-masonry != false {
+  @include masonry-grid($breakpoints) 
+}
