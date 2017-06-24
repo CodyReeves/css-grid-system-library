@@ -11,7 +11,7 @@ var gulp = require('gulp'),
   plumberNotifier = require('gulp-plumber-notifier'),
   stripCssComments = require('gulp-strip-css-comments'),
   cleanCSS = require('gulp-clean-css'),
-  uglify = require('gulp-uglify'),
+  uglifycss = require('gulp-uglifycss'),
   image = require('gulp-image'),
   rename = require('gulp-rename');
 
@@ -81,6 +81,9 @@ gulp.task('sass', function () {
 gulp.task('clean', function () {
   return gulp.src(paths.css.src)
     .pipe(stripCssComments({ preserve: /(^#|^!)/ }))
+    .pipe(uglifycss({
+      "maxLineLen": 100,
+    }))
     .pipe(gulp.dest(paths.css.dest));
 });
 
@@ -93,7 +96,6 @@ gulp.task('clean', function () {
 gulp.task('js-compile', function () {
   return gulp.src(paths.js.src)
     .pipe(concat(paths.js.file))
-    .pipe(uglify())
     .pipe(gulp.dest(paths.js.dest));
 });
 
