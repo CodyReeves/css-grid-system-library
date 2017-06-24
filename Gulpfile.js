@@ -33,17 +33,12 @@ var paths = {
     src: './css/*.css',
     dest: './css/',
     fileOg: '/css/style.css',
-    fileMin: 'min.style.css'
+    fileMin: 'min.style.css',
   },
   js: {
     src: './assets/js/src/*.js',
     dest: './assets/js/',
     file: 'compiled.js',
-  },
-  img: {
-    src: ['./assets/img/src/*.jpg', './assets/img/src/*.gif', './assets/img/src/*.png', './assets/img/src/*.jpeg'],
-    svg: '/assets/img/src/*.svg',
-    dest: './assets/img/',
   }
 };
 
