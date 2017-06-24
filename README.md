@@ -1,4 +1,7 @@
 ![Travis Ci](https://travis-ci.org/CodyReeves/css-grid-system-library.svg?branch=production)
+[![GitHub version](https://badge.fury.io/gh/CodyReeves%2Fcss-grid-system-library.svg)](https://badge.fury.io/gh/CodyReeves%2Fcss-grid-system-library)
+[![Bower version](https://badge.fury.io/bo/css-grid-system-library.svg)](https://badge.fury.io/bo/css-grid-system-library)
+
 # CSS Grid Library
 ### The only css grid package you will ever need. 
 
@@ -8,6 +11,34 @@ Three grid systems in one package! Each is fully responsive and mobile ready. Ea
 - Flexbox Grid System 
 - CSS Grid system 
 - Flexbox Masonry Grid System 
+
+## Instillation:
+
+### NPM/YARN:
+Add to your package.json:
+
+```
+"dependencies": {
+  "css-grid-system-library": "git://github.com/CodyReeves/css-grid-system-library.git"
+},
+```
+
+Add to your SCSS:
+```
+@import "PATH-TO-NODE_MODULES/node_modules/css-grid-system-library/scss/main";
+```
+### Bower
+Add to your bower.json:
+
+```
+"dependencies": {
+  "css-grid-system-library": >=1.0.0,
+},
+```
+Add to your SCSS:
+```
+@import "PATH-TO-BOWER_DIR/bower/css-grid-system-library/scss/main";
+```
 
 ## Example config 
 
