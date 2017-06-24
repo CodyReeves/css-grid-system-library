@@ -1,0 +1,192 @@
+////
+/// CSS Grid
+/// @group tools
+////
+
+@mixin css-grid($col-size, $gutter) {
+
+  .grid {
+    display: grid;
+
+  .row {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-gap: $gutter;
+    padding-bottom: $gutter;
+
+     @each $col-size, $size in $col-size {
+      @include breakpoint($col-size) {
+        &.bottom-#{$col-size} {
+          align-self: end;
+        }
+
+        &.top-#{$col-size} {
+          align-self: start;
+        }
+      }
+    }
+  }
+
+    .grid {
+      display: grid;
+      
+      @each $col-size, $size in $col-size {
+        @include breakpoint($col-size) {
+          &.align-center-vert-#{$col-size} {
+            align-items: center;
+          }
+
+          &.align-center-horiz-#{$col-size} {
+            justify-content: center;
+          }
+
+          &.align-end-vert-#{$col-size} {
+            align-items: end;
+          }
+
+          &.align-end-horiz-#{$col-size} {
+            justify-content: end;
+          }
+        }
+      }
+    }
+    
+    @each $col-size, $size in $col-size {
+      @include breakpoint($col-size) {
+        .full-#{$col-size} {
+          grid-column: 1 / span 12 !important;
+        }
+
+        .one-half-#{$col-size} {
+          grid-column: 1 / span 6;
+
+          &.align-middle-#{$col-size} {
+            grid-column: 4 / span 6 !important;
+          }
+
+          &:nth-child(2) {
+            grid-column: 4 / span 6;
+          }
+
+          &:last-child {
+            grid-column: 7 / span 6;
+          }
+
+          & + .one-fourth-#{$col-size} {
+            grid-column: 7 / span 3 !important;
+          }
+
+          & + .one-sixth-#{$col-size} {
+            grid-column: 7 / span 2 !important;
+          }
+
+          & + .one-sixth-#{$col-size} + .one-sixth-#{$col-size} {
+            grid-column: 9 / span 2 !important;
+          }
+        }
+
+        .one-third-#{$col-size} {
+          grid-column: 1 / span 4;
+
+          &.align-middle-#{$col-size} {
+            grid-column: 5 / span 4 !important;
+          }
+
+          &:nth-child(2) {
+            grid-column: 5 / span 4;
+          }
+
+          &:last-child {
+            grid-column: 9 / span 4;
+          }
+
+          & + .one-sixth-#{$col-size} {
+            grid-column: 5 / span 2 !important;
+          }
+
+          & + .one-sixth-#{$col-size} + .one-sixth-#{$col-size} {
+            grid-column: 7 / span 2 !important;
+          }
+
+          & + .one-sixth-#{$col-size} + .one-sixth-#{$col-size} + .one-sixth-#{$col-size} {
+            grid-column: 9 / span 2 !important;
+          }
+        }
+
+        .two-thirds-#{$col-size} {
+          grid-column: 1 / span 8;
+
+          &.align-middle-#{$col-size} {
+            grid-column: 3 / span 8 !important;
+          }
+
+          &:nth-child(2) {
+            grid-column: 2 / span 8;
+          }
+
+          &:last-child {
+            grid-column: 5 / span 8 !important;
+          }
+
+          & + .one-sixth-#{$col-size} {
+            grid-column: 9 / span 2 !important;
+          }
+        }
+
+        .one-fourth-#{$col-size} {
+          grid-column: 1 / span 3;
+
+          &:nth-child(2) {
+            grid-column: 4 / span 3;
+          }
+
+          &:nth-child(3) {
+            grid-column: 7 / span 3;
+          }
+
+          &:last-child {
+            grid-column: 10 / span 3 !important;
+          }
+        }
+
+        .one-sixth-#{$col-size} {
+          grid-column: 1 / span 2;
+
+          &:nth-child(2) {
+            grid-column: 3 / span 2;
+          }
+
+          &:nth-child(3) {
+            grid-column: 5 / span 2;
+          }
+
+          &:nth-child(4) {
+            grid-column: 7 / span 2;
+          }
+
+          &:nth-child(5) {
+            grid-column: 9 / span 2;
+          }
+
+          &:last-child {
+            grid-column: 11 / span 2 !important;
+          }
+
+          &.align-middle-#{$col-size}:only-child {
+            grid-column: 6 / span 2 !important;
+          }
+
+          & + .two-thirds-#{$col-size} {
+            grid-column: 3 / span 8;
+          }
+        }
+
+        div {
+          &:last-child {
+            grid-column: 12 / span 1;
+          }
+        }
+      }
+    }
+  }
+}
