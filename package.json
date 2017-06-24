@@ -1,5 +1,5 @@
 {
-  "name": "CSS Grid Library",
+  "name": "css-grid-system-library",
   "version": "1.0.0",
   "description": "A lightweight CSS grid system library. Includes a flexbox grid, a CSS Grid system, and a flexbox masonry grid with each grid being optional. Written in SCSS. Available in SCSS and CSS.",
   "main": "",
