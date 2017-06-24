@@ -1,5 +1,5 @@
-# Grid Layout
-### The only grid package you will need. 
+# CSS Grid Library
+### The only css grid package you will ever need. 
 
 Three grid systems in one package! Each is fully responsive and mobile ready. Each grid is optional via setting up a config. 
 
