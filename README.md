@@ -12,7 +12,7 @@ Three grid systems in one package! Each is fully responsive and mobile ready. Ea
 - CSS Grid system 
 - Flexbox Masonry Grid System 
 
-## Instillation:
+## Installation:
 
 ### NPM/YARN:
 Add to your package.json:
