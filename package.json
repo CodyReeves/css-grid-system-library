@@ -6,7 +6,9 @@
   "style": "scss/main.scss",
   "sass": "scss/main.scss",
   "scripts": {
-    "test": "make test"
+    "test": "make test",
+    "build-sass": "gulp sass",
+    "clean-css": "gulp clean"
   },
   "repository": {
     "type": "git",
@@ -36,14 +38,14 @@
     "gulp-sass": "^2.3.1",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-strip-css-comments": "^1.2.0",
-    "gulp-svgmin": "^1.2.2",
-    "gulp-uglify": "^2.0.0"
+    "gulp-svgmin": "^1.2.2"
   },
   "bugs": {
     "url": ""
   },
   "homepage": "",
   "dependencies": {
-    "gulp-rename": "^1.2.2"
+    "gulp-rename": "^1.2.2",
+    "gulp-uglifycss": "^1.0.8"
   }
 }
