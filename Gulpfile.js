@@ -12,7 +12,6 @@ var gulp = require('gulp'),
   stripCssComments = require('gulp-strip-css-comments'),
   cleanCSS = require('gulp-clean-css'),
   uglifycss = require('gulp-uglifycss'),
-  image = require('gulp-image'),
   rename = require('gulp-rename');
 
 /*---------------------------------------------------------
@@ -34,17 +33,12 @@ var paths = {
     src: './css/*.css',
     dest: './css/',
     fileOg: '/css/style.css',
-    fileMin: 'min.style.css'
+    fileMin: 'min.style.css',
   },
   js: {
     src: './assets/js/src/*.js',
     dest: './assets/js/',
     file: 'compiled.js',
-  },
-  img: {
-    src: ['./assets/img/src/*.jpg', './assets/img/src/*.gif', './assets/img/src/*.png', './assets/img/src/*.jpeg'],
-    svg: '/assets/img/src/*.svg',
-    dest: './assets/img/',
   }
 };
 
@@ -81,9 +75,7 @@ gulp.task('sass', function () {
 gulp.task('clean', function () {
   return gulp.src(paths.css.src)
     .pipe(stripCssComments({ preserve: /(^#|^!)/ }))
-    .pipe(uglifycss({
-      "maxLineLen": 100,
-    }))
+    .pipe(uglifycss())
     .pipe(gulp.dest(paths.css.dest));
 });
 
@@ -102,22 +94,3 @@ gulp.task('js-compile', function () {
 /*---------------------------------------------------------
 Image Tasks
 --------------------------------------------------------*/
-
-/* Minify PNG, JPEG, GIF and SVG images
-----------------------------------*/
-
-gulp.task('image', function () {
-  return gulp.src(paths.img.src)
-      .pipe(image({
-        pngquant: true,
-        optipng: true,
-        zopflipng: false,
-        jpegRecompress: true,
-        jpegoptim: true,
-        mozjpeg: true,
-        gifsicle: true,
-        svgo: true,
-        concurrent: 10,
-      }))
-      .pipe(gulp.dest(paths.img.dest));
-});
