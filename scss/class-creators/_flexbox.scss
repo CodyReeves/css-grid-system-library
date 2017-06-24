@@ -1,0 +1,223 @@
+
+/// @name Flexbox Grid
+/// Creates the box modal classes
+/// @param {list} - Breakpoint list of size keys
+/// @param {list} - list of column sizes px
+/// @param {bool} - sets true to create column sizes 
+/// @outputs flexbox grid classes for each breakpoint
+
+@mixin flexbox-grid($col-size, $grid-columns, $flexbox-columns-active) {
+  .container {
+    @include container(contain);
+  }
+
+  .container-fluid {
+    @include container(fluid);
+  }
+  @if $flexbox-columns-active != false {
+    .row {
+      @include grid-row(flexbox);
+    }
+  }
+
+  .row.reverse {   // sass-lint:disable-line force-element-nesting
+    @include flex-direction(row-reverse);
+    @include box-orient(horizontal);
+    -webkit-box-direction: reverse;
+  }
+
+  .col.reverse {  // sass-lint:disable-line force-element-nesting
+    @include flex-direction(column-reverse);
+    @include box-orient(vertical);
+    -webkit-box-direction: reverse;
+  }
+
+  //TODO:: find out how to do this without repeating the logic
+  // Loops through creating classes for each breakpoint
+  @each $col-size, $size in $col-size {
+    // Runs through statment -- xs needs no breakpoint
+    @if $col-size == xs {
+
+      $col-label-xs: breakpoint-col-str($col-size, $grid-columns);
+
+      #{$col-label-xs} {
+        @include column-base();
+      }
+
+      .col-#{$col-size} {
+        -webkit-flex-basis: 0;
+        -ms-flex-preferred-size: 0;
+        flex-basis: 0;
+        max-width: 100%;
+        -webkit-flex-grow: 1;
+        -ms-flex-positive: 1;
+        -webkit-box-flex: 1;
+        flex-grow: 1;
+
+        @include column-base();
+      }
+
+
+      .start-#{$col-size} {
+        @include breakpoint(xs) {
+          @include grid-vert-align(start);
+        }
+      }
+
+      .center-#{$col-size} {
+        @include breakpoint(xs) {
+          @include grid-vert-align(center);
+        }
+      }
+
+      .end-#{$col-size} {
+        @include breakpoint(xs) {
+          @include grid-horiz-align(bottom);
+        }
+      }
+
+      .top-#{$col-size} {
+        @include breakpoint(xs) {
+          @include grid-horiz-align(top);
+        }
+      }
+
+      .middle-#{$col-size} {
+        @include breakpoint(xs) {
+          @include grid-horiz-align(middle);
+        }
+      }
+
+      .bottom-#{$col-size} {
+        @include breakpoint(xs) {
+          @include grid-distribute(bottom);
+        }
+      }
+
+      .around-#{$col-size} {
+        @include breakpoint(xs) {
+          @include grid-distribute(around);
+        }
+      }
+
+      .between-#{$col-size} {
+        @include breakpoint(xs) {
+          @include grid-distribute(between);
+        }
+      }
+
+      .first-#{$col-size} {
+        @include breakpoint(xs) {
+          @include grid-reorder(first);
+        }
+      }
+
+      .last-#{$col-size} {
+        @include breakpoint(xs) {
+          @include grid-reorder(last);
+        }
+      }
+
+      .stretch-#{$col-size} {
+        @include breakpoint(xs) {
+          @include grid-stretch($col-size);
+        }
+      }
+      @if $flexbox-grid != false {
+      //Creates basic grid system
+        @for $i from 1 through $grid-columns {
+          $column-full: $i / ($grid-columns);
+
+          .col-#{$col-size}-#{$i} {
+            @include flex-width($column-full);
+          }
+
+          .col-#{$col-size}-offset-#{$i} {
+            margin-left: percentage($column-full);
+          }
+        }
+      }
+    } @else {
+      // Breakpoint added for sm, md, lg, xl
+      @include breakpoint($col-size) {
+
+        $col-label: breakpoint-col-str($col-size, $grid-columns);
+
+        #{$col-label} {
+          @include column-base();
+        }
+
+        .col-#{$col-size} {
+          // sass-lint:disable-block property-sort-order
+          -webkit-flex-grow: 1;
+          -ms-flex-positive: 1;
+          -webkit-box-flex: 1;
+          max-width: 100%;
+          flex-grow: 1;
+          -ms-flex-preferred-size: 0;
+          -webkit-flex-basis: 0;
+          flex-basis: 0;
+        }
+
+        .start-#{$col-size} {
+          @include grid-vert-align(start);
+        }
+
+        .center-#{$col-size} {
+          @include grid-vert-align(center);
+        }
+
+        .end-#{$col-size} {
+          @include grid-horiz-align(bottom);
+        }
+
+        .top-#{$col-size} {
+          @include grid-horiz-align(top);
+        }
+
+        .middle-#{$col-size} {
+          @include grid-horiz-align(middle);
+        }
+
+        .bottom-#{$col-size} {
+          @include grid-distribute(bottom);
+        }
+
+        .around-#{$col-size} {
+          @include grid-distribute(around);
+        }
+
+        .between-#{$col-size} {
+          @include grid-distribute(between);
+        }
+
+        .first-#{$col-size} {
+          @include grid-reorder(first);
+        }
+
+        .last-#{$col-size} {
+          @include grid-reorder(last);
+        }
+
+        .stretch-#{$col-size} {
+          @include grid-stretch($col-size);
+        }
+        @if $flexbox-columns-active != false {
+          // Creates basic grid system
+          @for $i from 1 through $grid-columns {
+            $column-full: $i / ($grid-columns);
+
+
+            .col-#{$col-size}-#{$i} {
+              @include flex-width($column-full);
+            }
+
+            .col-#{$col-size}-offset-#{$i} {
+              margin-left: percentage($column-full);
+            }
+          }
+        }
+      }
+    }
+  }
+}
