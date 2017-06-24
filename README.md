@@ -112,12 +112,13 @@ Percent based widths allow fluid resizing of columns and rows.
 
 #### Offset a column
 
+```
   <div class="row">
       <div class="col-xs-offset-3 col-xs-9">
           <div class="box">offset</div>
       </div>
   </div>
-
+```
 #### Auto Width
 
 Add any number of auto sizing columns to a row. Let the grid figure it out.
@@ -128,7 +129,7 @@ Add any number of auto sizing columns to a row. Let the grid figure it out.
       </div>
   </div>
 ```
-
+---
 #### Nested Grids
 
 Nest grids inside grids inside grids.
@@ -145,7 +146,7 @@ Nest grids inside grids inside grids.
       </div>
   </div>
 ```
-
+---
 #### Alignment
 
 Add classes to align elements to the start or end of a row as well as the top, bottom, or center of a column
@@ -160,7 +161,7 @@ Add classes to align elements to the start or end of a row as well as the top, b
      </div>
  </div>
 ```
-
+---
 `.center-`
 ```
  <div class="row center-xs">
@@ -171,7 +172,7 @@ Add classes to align elements to the start or end of a row as well as the top, b
      </div>
  </div>
 ```
-
+---
 `.end-`
 ```
  <div class="row end-xs">
@@ -182,7 +183,7 @@ Add classes to align elements to the start or end of a row as well as the top, b
      </div>
  </div>
 ```
-
+---
 `.top-`
 ```
     <div class="row top-xs">
@@ -193,7 +194,7 @@ Add classes to align elements to the start or end of a row as well as the top, b
         </div>
     </div>
 ```
-
+---
 `.middle-`
 ```
     <div class="row middle-xs">
@@ -204,7 +205,7 @@ Add classes to align elements to the start or end of a row as well as the top, b
         </div>
     </div>
 ```
-
+---
 `.bottom-`
 ```
     <div class="row bottom-xs">
@@ -215,7 +216,7 @@ Add classes to align elements to the start or end of a row as well as the top, b
         </div>
     </div>
 ```
-
+---
 ##### Example Alignment
 
 Here is an example of using the modifiers in conjunction to acheive different alignment at different viewport sizes.
@@ -253,7 +254,7 @@ Add classes to distribute the contents of a row or column.
         </div>
     </div>
 ```
-
+---
 `.between-`
 ```
     <div class="row between-xs">
@@ -299,7 +300,7 @@ Add classes to reorder columns.
          </div>
      </div>
 ```
-
+---
 `.last-`
 ```
      <div class="row">
