@@ -78,7 +78,7 @@ To create flexbox column classes set `flexbox-columns-active` to true in `$user-
 
 #### Overview
 
-Grid systems are used for creating page layouts through a series of rows and columns that house your content. Here's how the Bootstrap grid system works:
+Grid systems are used for creating page layouts through a series of rows and columns that house your content. Here's how the grid system works:
 
 Rows must be placed within a `.container` (fixed-width) or `.container-fluid` (full-width) for proper alignment and padding.
 Use rows to create horizontal groups of columns.
@@ -152,82 +152,82 @@ Nest grids inside grids inside grids.
 Add classes to align elements to the start or end of a row as well as the top, bottom, or center of a column
 
 `.start-`
-```
- <div class="row start-xs">
-     <div class="col-xs-6">
-         <div class="box">
-             start
-         </div>
-     </div>
- </div>
+```html
+<div class="row start-xs">
+    <div class="col-xs-6">
+        <div class="box">
+            start
+        </div>
+    </div>
+</div>
 ```
 ---
 `.center-`
-```
- <div class="row center-xs">
-     <div class="col-xs-6">
-         <div class="box">
-             start
-         </div>
-     </div>
- </div>
+```html
+<div class="row center-xs">
+    <div class="col-xs-6">
+        <div class="box">
+            start
+        </div>
+    </div>
+</div>
 ```
 ---
 `.end-`
-```
- <div class="row end-xs">
-     <div class="col-xs-6">
-         <div class="box">
-             start
-         </div>
-     </div>
- </div>
+```html
+<div class="row end-xs">
+    <div class="col-xs-6">
+        <div class="box">
+            start
+        </div>
+    </div>
+</div>
 ```
 ---
 `.top-`
-```
-    <div class="row top-xs">
-        <div class="col-xs-6">
-            <div class="box">
-                start
-            </div>
+```html
+<div class="row top-xs">
+    <div class="col-xs-6">
+        <div class="box">
+            start
         </div>
     </div>
+</div>
 ```
 ---
 `.middle-`
-```
-    <div class="row middle-xs">
-        <div class="col-xs-6">
-            <div class="box">
-                start
-            </div>
+```html
+<div class="row middle-xs">
+    <div class="col-xs-6">
+        <div class="box">
+            start
         </div>
     </div>
+</div>
 ```
 ---
 `.bottom-`
-```
-    <div class="row bottom-xs">
-        <div class="col-xs-6">
-            <div class="box">
-                start
-            </div>
+```html
+<div class="row bottom-xs">
+    <div class="col-xs-6">
+        <div class="box">
+            start
         </div>
     </div>
+</div>
 ```
 ---
 ##### Example Alignment
 
 Here is an example of using the modifiers in conjunction to acheive different alignment at different viewport sizes.
-```
- <div class="row center-xs end-sm start-lg">
-     <div class="col-xs-6">
-         <div class="box">
-             start
-         </div>
-     </div>
- </div>
+```html
+<div class="row center-xs end-sm start-lg">
+    <div class="col-xs-6">
+        <div class="box">
+            start
+        </div>
+    </div>
+</div>
 ```
 
 #### Distribution
@@ -235,45 +235,45 @@ Here is an example of using the modifiers in conjunction to acheive different al
 Add classes to distribute the contents of a row or column.
 
 `.around-`
-```
-    <div class="row around-xs">
-        <div class="col-xs-2">
-            <div class="box">
-                around
-            </div>
-        </div>
-        <div class="col-xs-2">
-            <div class="box">
-                around
-            </div>
-        </div>
-        <div class="col-xs-2">
-            <div class="box">
-                around
-            </div>
+```html
+<div class="row around-xs">
+    <div class="col-xs-2">
+        <div class="box">
+            around
         </div>
     </div>
+    <div class="col-xs-2">
+        <div class="box">
+            around
+        </div>
+    </div>
+    <div class="col-xs-2">
+        <div class="box">
+            around
+        </div>
+    </div>
+</div>
 ```
 ---
 `.between-`
-```
-    <div class="row between-xs">
-        <div class="col-xs-2">
-            <div class="box">
-                around
-            </div>
-        </div>
-        <div class="col-xs-2">
-            <div class="box">
-                around
-            </div>
-        </div>
-        <div class="col-xs-2">
-            <div class="box">
-                around
-            </div>
+```html
+<div class="row between-xs">
+    <div class="col-xs-2">
+        <div class="box">
+            around
         </div>
     </div>
+    <div class="col-xs-2">
+        <div class="box">
+            around
+        </div>
+    </div>
+    <div class="col-xs-2">
+        <div class="box">
+            around
+        </div>
+    </div>
+</div>
 ```
 
 #### Reordering
@@ -281,67 +281,67 @@ Add classes to distribute the contents of a row or column.
 Add classes to reorder columns.
 
 `.first-`
-```
-     <div class="row">
-         <div class="col-xs-2">
-             <div class="box">
-                 1
-             </div>
-         </div>
-         <div class="col-xs-2">
-             <div class="box">
-                 2
-             </div>
-         </div>
-         <div class="col-xs-2 first-xs">
-             <div class="box">
-                 3
-             </div>
-         </div>
-     </div>
+```html
+<div class="row">
+    <div class="col-xs-2">
+        <div class="box">
+            1
+        </div>
+    </div>
+    <div class="col-xs-2">
+        <div class="box">
+            2
+        </div>
+    </div>
+    <div class="col-xs-2 first-xs">
+        <div class="box">
+            3
+        </div>
+    </div>
+</div>
 ```
 ---
 `.last-`
-```
-     <div class="row">
-         <div class="col-xs-2 last-xs">
-             <div class="box">
-                 1
-             </div>
-         </div>
-         <div class="col-xs-2">
-             <div class="box">
-                 2
-             </div>
-         </div>
-         <div class="col-xs-2">
-             <div class="box">
-                 3
-             </div>
-         </div>
-     </div>
+```html
+<div class="row">
+    <div class="col-xs-2 last-xs">
+        <div class="box">
+            1
+        </div>
+    </div>
+    <div class="col-xs-2">
+        <div class="box">
+            2
+        </div>
+    </div>
+    <div class="col-xs-2">
+        <div class="box">
+            3
+        </div>
+    </div>
+</div>
 ```
 #### Reversing
 
 `.reverse`
-```
- <div class="row reverse">
-     <div class="col-xs-2">
-         <div class="box">
-             1
-         </div>
-     </div>
-     <div class="col-xs-2">
-         <div class="box">
-             2
-         </div>
-     </div>
-     <div class="col-xs-2">
-         <div class="box">
-             3
-         </div>
-     </div>
- </div>
+```html
+<div class="row reverse">
+    <div class="col-xs-2">
+        <div class="box">
+            1
+        </div>
+    </div>
+    <div class="col-xs-2">
+        <div class="box">
+            2
+        </div>
+    </div>
+    <div class="col-xs-2">
+        <div class="box">
+            3
+        </div>
+    </div>
+</div>
 ```
 
 ### Masonry 
@@ -356,7 +356,7 @@ To use the masonry grid there is 2 components that must be used:
 
 #### Example Markup 
 
-```
+```html
 <div class="masonry-row">
   <div class="mas-col-xs-1 mas-col-sm-2 mas-col-lg-3">
     <div class="item"> ... </div>
@@ -367,3 +367,122 @@ To use the masonry grid there is 2 components that must be used:
 ```
 
 ### CSS Grid System
+Please note this still needs fully tested.
+
+Classes are based off the main breakpoint map in the `$settings`
+Each set of classes uses the breakpoint suffix to declare size of grid similar to the flexbox grid. An example CSS grid class: `full-sm two-thirds-lg`
+
+Basic markup for creating a single column in the row
+
+```html
+<div class="container grid">
+  <div class="row">
+    <div class="full-xs full-sm"> ... </div>
+  </div>
+</div>
+```
+
+A 2 column, 3 row layout:
+
+```html
+<div class="container grid">
+  <div class="row">
+    <div class="full-xs full-sm"> ... </div>
+  </div>
+  <div class="row">
+    <div class="full-xs two-thirds-sm"> ... </div>
+    <div class="full-xs one-third-sm"> ... </div>
+  </div>
+  <div class="row">
+    <div class="full-xs full-sm"> ... </div>
+  </div>
+</div>
+```
+#### Columns
+
+Columns classes, based on a 12 column grid:
+
+- `.full- *` (12/12 Columns)
+- `.one-half- *` (6/12 Columns)
+- `.two-thirds- *` (8/12 Columns)
+- `.one-third- *` (4/12 Columns)
+- `.one-fourth- *` (3/12 Columns)
+- `.one-sixth- *` (2/12 Columns)
+- `.one-twelfth- *` (1/12 Columns)
+
+#### Grid Alignment 
+Note: the classes must be used with the `.grid` class. 
+
+**Example: `grid align-center-vert-sm`**
+
+- `.align-center-vert- *` (Vertically center)
+- `.align-center-horiz- *` (Horizontally center)
+- `.align-end-vert- *` (Vertically align to bottom)
+- `.align-end-horiz- *` (Horizontally align to right)
+
+```html
+<div class="container grid">
+  <div class="row">
+    <div class="full-xs full-sm grid align-center-vert-sm content-center-horiz-sm"> Centered </div>
+  </div>
+</div>
+```
+#### Row Alignment
+Note: the classes must be used with the `.row` class 
+
+- `.align-top- *` (Align row to top)
+- `.align-bottom- *` (Align row to bottom)
+
+
+```html
+<div class="container grid">
+  <div class="row align-top-xs align-bottom-sm">
+    <div class="full-xs full-sm"> ... </div>
+  </div>
+  <div class="row">
+    <div class="two-half-xs two-thirds-sm"> ... </div>
+    <div class="one-half-xs one-third-sm"> ... </div>
+  </div>
+  <div class="row align-bottom-xs align-top-sm">
+    <div class="full-xs full-sm"> ... </div>
+  </div>
+</div>
+```
+
+#### Column Alignment 
+
+Align the column to the middle of the layout.  
+Feature working with: `.one-half- .two-thirds- .one-third- .one-sixth-` column classes
+
+- `.align-middle- *` (Centers column)
+
+```html
+<div class="container grid">
+  <div class="row">
+    <div class="full-xs one-half-sm align-middle-sm"> Centered </div>
+  </div>
+</div>
+```
+
+#### Nesting
+
+Requirements: 
+- Add `.grid` class to your column.
+
+```html
+<div class="container grid">
+  <div class="row">
+    <div class="full-xs one-third-sm grid">
+      <div class="one-half-sm"> ... </div>
+      <div class="one-half-sm"> ... </div>
+    </div>
+    <div class="full-xs two-thirds-sm">
+      <div class="one-forth-sm"> ... </div>
+      <div class="one-forth-sm"> ... </div>
+      <div class="one-forth-sm"> ... </div>
+      <div class="one-forth-sm"> ... </div>
+    </div>
+  </div>
+</div>
+```
+

@@ -7,45 +7,45 @@
 
   .grid {
     display: grid;
-
-  .row {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    grid-gap: $gutter;
-    padding-bottom: $gutter;
-
-     @each $col-size, $size in $col-size {
+    
+    @each $col-size, $size in $col-size {
       @include breakpoint($col-size) {
-        &.bottom-#{$col-size} {
-          align-self: end;
+        &.align-center-vert-#{$col-size} {
+          align-items: center;
         }
 
-        &.top-#{$col-size} {
-          align-self: start;
+        &.align-center-horiz-#{$col-size} {
+          justify-content: center;
+        }
+
+        &.align-end-vert-#{$col-size} {
+          align-items: end;
+        }
+
+        &.align-end-horiz-#{$col-size} {
+          justify-content: end;
         }
       }
     }
   }
 
-    .grid {
+  .grid {
+    display: grid;
+
+    .row {
       display: grid;
-      
+      grid-template-columns: repeat(12, 1fr);
+      grid-gap: $gutter;
+      padding-bottom: $gutter;
+
       @each $col-size, $size in $col-size {
         @include breakpoint($col-size) {
-          &.align-center-vert-#{$col-size} {
-            align-items: center;
+          &.align-bottom-#{$col-size} {
+            align-self: end;
           }
 
-          &.align-center-horiz-#{$col-size} {
-            justify-content: center;
-          }
-
-          &.align-end-vert-#{$col-size} {
-            align-items: end;
-          }
-
-          &.align-end-horiz-#{$col-size} {
-            justify-content: end;
+          &.align-top-#{$col-size} {
+            align-self: start;
           }
         }
       }
@@ -181,7 +181,8 @@
           }
         }
 
-        div {
+        div,
+        .one-twelfth {
           &:last-child {
             grid-column: 12 / span 1;
           }
