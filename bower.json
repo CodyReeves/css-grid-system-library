@@ -1,0 +1,29 @@
+{
+  "name": "css-grid-system-library",
+  "description": "A lightweight CSS grid system library. Includes a flexbox grid, a CSS Grid system, and a flexbox masonry grid with each grid being optional. Written in SCSS. Available in SCSS and CSS.",
+  "main": "scss/main.scss",
+  "authors": [
+    "Cody Reeves<codreev@gmail.com>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "SCSS",
+    "Breakpoints",
+    "Media",
+    "Queries",
+    "CSS",
+    "Screen",
+    "Mobile",
+    "Desktop"
+  ],
+  "homepage": "https://github.com/CodyReeves/css-grid-system-library",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "scss/test"
+  ],
+  "dependencies": {}
+}
